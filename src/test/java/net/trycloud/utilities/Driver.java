@@ -1,10 +1,14 @@
 package net.trycloud.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.trycloud.utilities.ConfigurationReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -28,15 +32,18 @@ public class Driver {
      */
     public static WebDriver getDriver() {
 
+
         if (driverPool.get() == null) {  // if driver/browser was never opened
 
             String browserType = ConfigurationReader.getProperty("browser");
+
 
         /*
         Depending on the browserType our switch statement will determine
         to open specific type of browser/driver
          */
             switch (browserType) {
+
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driverPool.set(new ChromeDriver());
@@ -49,6 +56,7 @@ public class Driver {
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
+
             }
         }
 
@@ -56,6 +64,7 @@ public class Driver {
         return driverPool.get();
 
     }
+
 
 
 
@@ -67,10 +76,13 @@ public class Driver {
         if(driverPool.get() != null) {
 
             driverPool.get().quit();
+
             driverPool.remove();
         }
     }
 
+
  
 
 }
+

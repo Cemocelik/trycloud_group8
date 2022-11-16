@@ -29,8 +29,11 @@ public class Hooks {
     }
 
 
+
+
     @Before
     public void setupScenario() {
+
 
         System.out.println("Setting up browser using cucumber @Before each scenario");
         //Driver.getDriver().get("URL of your app");
