@@ -17,7 +17,8 @@ public class Driver {
      Creating a private constructor, so we are closing access to the object of this class
      from outside of any classes
      */
-    private Driver(){}
+    private Driver() {
+    }
 
     /*
     Making our 'driver' instance private, so that it is not reachable from outside of any class
@@ -29,26 +30,26 @@ public class Driver {
     /*
     Create re-usable utility method which will return same driver instance when we call it.
      */
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
 
-        if(driverPool.get() == null){  // if driver/browser was never opened
-            String browserType="";
-            if(System.getProperty("BROWSER")==null){
+        if (driverPool.get() == null) {  // if driver/browser was never opened
+            String browserType = "";
+            if (System.getProperty("BROWSER") == null) {
                 browserType = ConfigurationReader.getProperty("browser");
-            }else {
-                browserType=System.getProperty("BROWSER");
+            } else {
+                browserType = System.getProperty("BROWSER");
             }
 
         /*
         Depending on the browserType our switch statement will determine
         to open specific type of browser/driver
          */
-            switch(browserType){
+            switch (browserType) {
                 case "remote-chrome":
                     try {
                         // assign your grid server address
                         String gridAddress = "174.129.57.206";
-                        URL url = new URL("http://"+ gridAddress + ":4444/wd/hub");
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("chrome");
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
@@ -62,7 +63,7 @@ public class Driver {
                     try {
                         // assign your grid server address
                         String gridAddress = "174.129.57.20";
-                        URL url = new URL("http://"+ gridAddress + ":4444/wd/hub");
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                         desiredCapabilities.setBrowserName("firefox");
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
@@ -96,8 +97,8 @@ public class Driver {
     }
 
 
-    public static void closeDriver(){
-        if(driverPool.get() != null) {
+    public static void closeDriver() {
+        if (driverPool.get() != null) {
             driverPool.get().quit(); // this line will kill the session. value will not be null
             driverPool.remove();
         }

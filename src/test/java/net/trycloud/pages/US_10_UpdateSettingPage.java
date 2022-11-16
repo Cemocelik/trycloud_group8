@@ -1,6 +1,7 @@
 package net.trycloud.pages;
 
-import com.cydeo.utilities.Driver;
+
+import net.trycloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
