@@ -5,10 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class US_1_Login_Page {
-    public US_1_Login_Page() {
-        PageFactory.initElements(Driver.getDriver(),this);
-    }
+public class US_1_Login_Page extends BasePage {
+
 
     @FindBy( xpath = "//input[@id='user']")
     public WebElement inputUsername;
