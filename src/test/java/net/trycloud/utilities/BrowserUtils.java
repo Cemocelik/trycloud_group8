@@ -22,36 +22,37 @@ public class BrowserUtils {
      * This method is used to pause the code for given seconds
      * It is static method we can call with class name
      * BrowserUtils.sleep(3);
+     *
      * @param seconds
      */
-    public static void sleep(int seconds){
-         // 1 second = 1000 millis
+    public static void sleep(int seconds) {
+        // 1 second = 1000 millis
         // millis = seconds*1000
-         try {
-             Thread.sleep(seconds*1000);
-         }catch(InterruptedException e){
-             e.printStackTrace();
-             System.out.println("Exception happened in sleep method!");
-         }
-     }
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            System.out.println("Exception happened in sleep method!");
+        }
+    }
 
 
-     //Method info:
+    //Method info:
     //• Name: verifyTitle()
     //• Return type: void
     //• Arg1: WebDriver
     //• Arg2: String expectedTitle
     // BrowserUtils.verifyTitle(driver,"Google")
-    public static void verifyTitle(WebDriver driver, String expectedTitle){
+    public static void verifyTitle(WebDriver driver, String expectedTitle) {
 
         String actualTitle = driver.getTitle();
 
-        Assert.assertEquals(expectedTitle,actualTitle);
+        Assert.assertEquals(expectedTitle, actualTitle);
 
     }
 
-    public static void waitForInvisibilityOf(WebElement element){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),15);
+    public static void waitForInvisibilityOf(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
@@ -59,9 +60,10 @@ public class BrowserUtils {
     /**
      * This method will accept dropdown as a WebElement
      * and return all the options' text in a List of String
+     *
      * @return List<String>
      */
-    public static List<String> dropdownOptionsAsString(WebElement dropdownElement){
+    public static List<String> dropdownOptionsAsString(WebElement dropdownElement) {
 
         Select select = new Select(dropdownElement);
 
@@ -85,13 +87,14 @@ public class BrowserUtils {
     /**
      * This method will accept a group of radio buttons as a List<WebElement>
      * it will loop through the List, and click to the radio button with provided attribute value
+     *
      * @param radioButtons
      * @param attributeValue
      */
-    public static void clickRadioButton(List<WebElement> radioButtons, String attributeValue){
+    public static void clickRadioButton(List<WebElement> radioButtons, String attributeValue) {
 
-        for (WebElement each : radioButtons ) {
-            if(each.getAttribute("value").equalsIgnoreCase(attributeValue)){
+        for (WebElement each : radioButtons) {
+            if (each.getAttribute("value").equalsIgnoreCase(attributeValue)) {
                 each.click();
             }
         }
@@ -101,9 +104,10 @@ public class BrowserUtils {
 
     /**
      * This method will accept a String as expected value and verify actual URL CONTAINS the value.
+     *
      * @param expectedInURL
      */
-    public static void verifyURLContains(String expectedInURL){
+    public static void verifyURLContains(String expectedInURL) {
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
     }
 
@@ -115,7 +119,7 @@ public class BrowserUtils {
         - If condition matches, will break loop.
     Arg3: expectedInTitle to be compared against actualTitle
      */
-    public static void switchWindowAndVerify(String expectedInUrl, String expectedInTitle){
+    public static void switchWindowAndVerify(String expectedInUrl, String expectedInTitle) {
 
         Set<String> allWindowsHandles = Driver.getDriver().getWindowHandles();
 
@@ -125,7 +129,7 @@ public class BrowserUtils {
 
             System.out.println("Current URL: " + Driver.getDriver().getCurrentUrl());
 
-            if (Driver.getDriver().getCurrentUrl().contains(expectedInUrl)){
+            if (Driver.getDriver().getCurrentUrl().contains(expectedInUrl)) {
                 break;
             }
         }
@@ -137,6 +141,7 @@ public class BrowserUtils {
 
     /**
      * Switches to new window by the exact title. Returns to original window if target title not found
+     *
      * @param targetTitle
      */
     public static void switchToWindow(String targetTitle) {
@@ -393,6 +398,7 @@ public class BrowserUtils {
 
     /**
      * Highlighs an element by changing its background and border color
+     *
      * @param element
      */
     public static void highlight(WebElement element) {
@@ -488,13 +494,30 @@ public class BrowserUtils {
     }
 
     /**
-     *  checks that an element is present on the DOM of a page. This does not
-     *    * necessarily mean that the element is visible.
+     * checks that an element is present on the DOM of a page. This does not
+     * * necessarily mean that the element is visible.
+     *
      * @param by
      * @param time
      */
     public static void waitForPresenceOfElement(By by, long time) {
         new WebDriverWait(Driver.getDriver(), time).until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+
+    public static void clickElement(WebElement element) {
+        waitForVisibility(element, 10);
+        waitFor(1);
+        element.click();
+    }
+
+    public static void clickWithSpecificText(List<WebElement> elements, String text) {
+        for (WebElement element : elements) {
+            if (element.getText().equals(text)) {
+                clickElement(element);
+                break;
+            }
+        }
     }
 
 

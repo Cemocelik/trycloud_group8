@@ -16,17 +16,23 @@ public class US_1_Login_Step_Def {
     public void user_on_the_login_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
     }
+
     @When("user use username {string} and passcode {string}")
     public void userUseUsernameAndPasscode(String username, String password) {
-    us_1_login_page.login(username,password);
+        us_1_login_page.login(username, password);
     }
+
     @When("user click the login button")
     public void user_click_the_login_button() {
+        //create a method
+        // for mac option+enter
+        //for win alt+enter
 
     }
+
     @Then("verify the user should be at the dashboard page")
     public void verify_the_user_should_be_at_the_dashboard_page() {
-        BrowserUtils.verifyTitle(Driver.getDriver(),"Dashboard - Trycloud");
+        BrowserUtils.verifyTitle(Driver.getDriver(), "Dashboard - Trycloud");
 
     }
 
