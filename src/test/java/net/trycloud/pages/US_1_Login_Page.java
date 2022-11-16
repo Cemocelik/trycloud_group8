@@ -1,9 +1,12 @@
 package net.trycloud.pages;
 
+import net.trycloud.utilities.ConfigurationReader;
 import net.trycloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static net.trycloud.utilities.BrowserUtils.clickElement;
 
 public class US_1_Login_Page {
     public US_1_Login_Page() {
@@ -25,4 +28,12 @@ public class US_1_Login_Page {
         inputPassword.sendKeys(password);
         loginBtn.click();
     }
+
+
+    public void login() {
+        login(ConfigurationReader.getProperty("username38"), ConfigurationReader.getProperty("password"));
+        clickElement(loginBtn);
+    }
+
+
 }

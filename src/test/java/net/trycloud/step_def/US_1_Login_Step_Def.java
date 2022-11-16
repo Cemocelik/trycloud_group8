@@ -24,6 +24,9 @@ public class US_1_Login_Step_Def {
 
     @When("user click the login button")
     public void user_click_the_login_button() {
+        //create a method
+        // for mac option+enter
+        //for win alt+enter
 
     }
 

@@ -5,6 +5,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeStep;
 import io.cucumber.java.Scenario;
+import net.trycloud.utilities.ConfigurationReader;
 import net.trycloud.utilities.Driver;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -24,14 +25,19 @@ public class Hooks {
 
         }
 
-        Driver.closeDriver();
+  //      Driver.closeDriver();
     }
 
 
-    //@Before
+
+
+    @Before
     public void setupScenario() {
+
+
         System.out.println("Setting up browser using cucumber @Before each scenario");
-        Driver.getDriver().get("URL of your app");
+        //Driver.getDriver().get("URL of your app");
+        Driver.getDriver().get(ConfigurationReader.getProperty("env"));
     }
 
 
