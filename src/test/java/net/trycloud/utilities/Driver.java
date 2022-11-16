@@ -58,11 +58,19 @@ public class Driver {
     }
 
 
+
     public static void closeDriver() {
         if (driverPool.get() != null) {
-            driverPool.get().quit(); // this line will kill the session. value will not be null
+
+
+    public static void closeDriver(){
+        if(driverPool.get() != null) {
+
+            driverPool.get().quit();
             driverPool.remove();
         }
     }
+
+ 
 
 }
