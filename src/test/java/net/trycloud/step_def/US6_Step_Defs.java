@@ -2,6 +2,7 @@ package net.trycloud.step_def;
 
 import net.trycloud.pages.BasePage;
 import net.trycloud.pages.US6Page;
+import net.trycloud.pages.US_1_Login_Page;
 import net.trycloud.utilities.ConfigurationReader;
 import net.trycloud.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -12,7 +13,6 @@ public class US6_Step_Defs {
 
 
     BasePage basePage = new BasePage();
-
     US6Page us6Page = new US6Page();
 
     @Given("user on the dashboard page")
@@ -48,7 +48,7 @@ public class US6_Step_Defs {
     }
     @When("users uploads file with the “upload file” option")
     public void users_uploads_file_with_the_upload_file_option() {
-        
+        us6Page.uploadOption.click();
         us6Page.uploadOption.sendKeys("/Users/max/Desktop/HTML/html file .html");
     }
     @Then("verify the file is displayed on the page")

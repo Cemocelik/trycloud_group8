@@ -32,6 +32,6 @@ public class US6Page {
     public WebElement removeFromFavorites;
 
 
-    @FindBy (xpath = "//label[@data-action='upload']/span[2]")
+    @FindBy (xpath = "//input[@type='file']")
     public WebElement uploadOption; 
 }
