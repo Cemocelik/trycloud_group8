@@ -5,13 +5,15 @@ import net.trycloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import static net.trycloud.utilities.BrowserUtils.clickElement;
 
-public class US_1_Login_Page {
+public class US_1_Login_Page extends BasePage {
+
+
     public US_1_Login_Page() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
+
 
     @FindBy(xpath = "//input[@id='user']")
     public WebElement inputUsername;
