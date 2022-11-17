@@ -29,5 +29,12 @@ public class BasePage {
     public WebElement displayFileInSearchBox;
 
 
+    @FindBy(xpath = "//a[@class='nav-icon-favorites svg']")
+    public WebElement favoritesOptionOnLeft;
+
+    @FindBy (xpath = "//a[@class='button new']/span[1]")
+    public WebElement addIcon;
+
+
 
 }
